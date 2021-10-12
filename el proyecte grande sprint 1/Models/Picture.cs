@@ -4,7 +4,7 @@ using System.Collections.Generic;
 public class Picture {
 	private string _name;
 	private string _route;
-	private UUID _id;
+	private Guid _id;
 	private DateTime _uploadDate;
 	private PictureCategory _category;
 	private User _nameOfUploader;
@@ -17,9 +17,4 @@ public class Picture {
 	public void AddComment(Comment comment, User username) {
 		throw new System.NotImplementedException("Not implemented");
 	}
-
-	private Comment comment;
-
-	private PictureStorage pictureStorage;
-
 }
