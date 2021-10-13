@@ -59,31 +59,33 @@ html {
 }
 
 body {
-  /* Margin bottom by footer height */
-  margin-bottom: 60px;
+    /* Margin bottom by footer height */
+    margin-bottom: 60px;
+//    background-image: url('https://images.unsplash.com/photo-1606669059257-19fc4ca49f79?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=774&q=80');
+    background-size: cover;
 }
 .footer {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  white-space: nowrap;
-  line-height: 60px; /* Vertically center the text there */
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 60px; 
+    white-space: nowrap;
+    line-height: 60px; 
+}
+
+.footer-container {
+    text-align: center;
+    min-height: 100%;
+    position: relative;
 }
 
 .container {
     text-align: center;
+    min-height: 100%;
     width: 300px;
     height: 200px;
     padding-top: 100px;
     position:relative;
-}
-.child {
-    width: 50px;
-    height: 50px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    margin: -25px 0 0 -25px; /* apply negative top and left margins to truly center the element */
 }
 
 .search-bar {
