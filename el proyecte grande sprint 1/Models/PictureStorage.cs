@@ -34,6 +34,14 @@ public class PictureStorage : IPictureStorage  {
 		}
 	}
 
+	public string GenerateDate()
+	{
+		string year = DateTime.Now.Year.ToString();
+		string month = DateTime.Now.Month.ToString();
+		string day = DateTime.Now.Day.ToString();
+		return $"{year}-{month}-{day}";
+	}
+
 	public IEnumerable<Picture> GetAllPictures() {
 		throw new System.NotImplementedException("Not implemented");
 	}
