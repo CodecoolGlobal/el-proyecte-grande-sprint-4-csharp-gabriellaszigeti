@@ -14,6 +14,18 @@ public class Picture {
 	private int _yearTaken;
 	private int _downloads;
 
+	public Picture(string name, string route, Guid id,
+	string uploadDate, PictureCategory category,
+	User nameOfUploader, int yearTaken)
+	{
+		_name = name;
+		_route = route;
+		_id = id;
+		_uploadDate = uploadDate;
+		_category = category;
+		_nameOfUploader = nameOfUploader;
+		_yearTaken = yearTaken;
+	}
 	public void AddComment(Comment comment, User username) {
 		throw new System.NotImplementedException("Not implemented");
 	}
