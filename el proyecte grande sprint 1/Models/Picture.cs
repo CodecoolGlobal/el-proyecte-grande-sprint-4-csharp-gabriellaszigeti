@@ -27,6 +27,7 @@ public class Picture {
 	}
 
     public Guid Id { get; private set;}
+	public string Route { get => _route; }
 
     public void AddComment(Comment comment, User username) {
 		throw new System.NotImplementedException("Not implemented");
