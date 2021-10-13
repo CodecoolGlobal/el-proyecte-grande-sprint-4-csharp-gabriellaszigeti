@@ -5,7 +5,7 @@ public class Picture {
 	private string _name;
 	private string _route;
 	private Guid _id;
-	private DateTime _uploadDate;
+	private string _uploadDate;
 	private PictureCategory _category;
 	private User _nameOfUploader;
 	private List<Comment> _comments;
