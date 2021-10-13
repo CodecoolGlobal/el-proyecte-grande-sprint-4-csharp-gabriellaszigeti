@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 
 public class PictureStorage : IPictureStorage  {
-	private HashSet<Picture> _pictures;
+	private List<Picture> _pictures;
 	Random random = new Random();
 	public const int MinYearTaken = 1826;
 	public const int MaxYearTaken = 2021;
@@ -11,7 +11,7 @@ public class PictureStorage : IPictureStorage  {
 
 	public PictureStorage()
 	{
-		_pictures = new HashSet<Picture>();
+		_pictures = new List<Picture>();
 		Seed();
 	}
 
@@ -45,6 +45,12 @@ public class PictureStorage : IPictureStorage  {
 	public IEnumerable<Picture> GetAllPictures() {
 		return Pictures;
 	}
+
+	public Picture GetPictureById(Guid id)
+    {
+		Picture picture = _pictures.Find(picture => picture.Id == id);
+		return picture;
+    }
 	public void AddPicture(Picture picture) {
 		throw new System.NotImplementedException("Not implemented");
 	}
