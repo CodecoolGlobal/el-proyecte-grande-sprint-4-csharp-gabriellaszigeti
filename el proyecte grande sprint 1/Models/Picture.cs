@@ -4,7 +4,6 @@ using System.Collections.Generic;
 public class Picture {
 	private string _name;
 	private string _route;
-	private Guid _id;
 	private string _uploadDate;
 	private PictureCategory _category;
 	private User _nameOfUploader;
@@ -20,13 +19,16 @@ public class Picture {
 	{
 		_name = name;
 		_route = route;
-		_id = id;
+		Id = id;
 		_uploadDate = uploadDate;
 		_category = category;
 		_nameOfUploader = nameOfUploader;
 		_yearTaken = yearTaken;
 	}
-	public void AddComment(Comment comment, User username) {
+
+    public Guid Id { get; private set;}
+
+    public void AddComment(Comment comment, User username) {
 		throw new System.NotImplementedException("Not implemented");
 	}
 }
