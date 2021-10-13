@@ -1,8 +1,13 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 
 public class PictureStorage : IPictureStorage  {
 	private HashSet<Picture> _pictures;
+	private DirectoryInfo _directoryInfo;
+	Random random = new Random();
+	public const int MinYearTaken = 1826;
+	public const int MaxYearTaken = 2021;
 
 	public IEnumerable<Picture> GetAllPictures() {
 		throw new System.NotImplementedException("Not implemented");
