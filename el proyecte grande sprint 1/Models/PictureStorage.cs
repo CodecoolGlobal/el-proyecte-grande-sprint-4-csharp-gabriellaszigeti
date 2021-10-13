@@ -9,6 +9,13 @@ public class PictureStorage : IPictureStorage  {
 	public const int MinYearTaken = 1826;
 	public const int MaxYearTaken = 2021;
 
+	public PictureStorage()
+	{
+		_pictures = new HashSet<Picture>();
+		_directoryInfo = new DirectoryInfo("C:\\");
+		Seed();
+	}
+
 	public IEnumerable<Picture> GetAllPictures() {
 		throw new System.NotImplementedException("Not implemented");
 	}
