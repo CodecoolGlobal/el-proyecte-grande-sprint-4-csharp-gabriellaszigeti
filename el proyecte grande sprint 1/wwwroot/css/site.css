@@ -69,6 +69,8 @@ body {
     height: 60px; 
     white-space: nowrap;
     line-height: 60px; 
+    background-color: black;
+    opacity: 90%;
 }
 
 .footer-container {
@@ -102,6 +104,7 @@ body {
     font-family: 'Segoe UI';
 }
 
+
 input[type="password"] {
     font-style: normal;
     font-weight: normal;
@@ -111,4 +114,16 @@ input[type="password"] {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
+
+.form-container {
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    border-color: red;
+    top: 50%;
+    left: 50%;
+    margin: -25px 0 0 -25px; /* apply negative top and left margins to truly center the element */
+}
+
+
 
