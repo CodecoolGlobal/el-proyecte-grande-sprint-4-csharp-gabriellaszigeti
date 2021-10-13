@@ -8,6 +8,7 @@ public class PictureStorage : IPictureStorage  {
 	Random random = new Random();
 	public const int MinYearTaken = 1826;
 	public const int MaxYearTaken = 2021;
+	public IEnumerable<Picture> Pictures { get { return _pictures; } }
 
 	public PictureStorage()
 	{
@@ -43,7 +44,7 @@ public class PictureStorage : IPictureStorage  {
 	}
 
 	public IEnumerable<Picture> GetAllPictures() {
-		throw new System.NotImplementedException("Not implemented");
+		return Pictures;
 	}
 	public void AddPicture(Picture picture) {
 		throw new System.NotImplementedException("Not implemented");
