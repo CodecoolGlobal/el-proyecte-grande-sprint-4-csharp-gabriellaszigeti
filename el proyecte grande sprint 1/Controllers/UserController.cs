@@ -22,5 +22,10 @@ public class UserController : Controller
     {
         return View();
     }
+    
+    public IActionResult SignUp()
+    {
+        return View();
+    }
 
 }
