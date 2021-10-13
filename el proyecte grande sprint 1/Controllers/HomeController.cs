@@ -27,6 +27,11 @@ namespace el_proyecte_grande_sprint_1.Controllers
         {
             return View();
         }
+        
+        public IActionResult PicturesPage()
+        {
+            return View();
+        }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
