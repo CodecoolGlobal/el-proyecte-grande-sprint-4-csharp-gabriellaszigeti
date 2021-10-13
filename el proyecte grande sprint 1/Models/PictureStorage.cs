@@ -4,7 +4,6 @@ using System.IO;
 
 public class PictureStorage : IPictureStorage  {
 	private HashSet<Picture> _pictures;
-	private DirectoryInfo _directoryInfo;
 	Random random = new Random();
 	public const int MinYearTaken = 1826;
 	public const int MaxYearTaken = 2021;
@@ -13,7 +12,6 @@ public class PictureStorage : IPictureStorage  {
 	public PictureStorage()
 	{
 		_pictures = new HashSet<Picture>();
-		_directoryInfo = new DirectoryInfo("C:\\");
 		Seed();
 	}
 
@@ -29,7 +27,7 @@ public class PictureStorage : IPictureStorage  {
 				string category = Path.GetFileName(directory).ToUpper();
 				string filename = Path.GetFileName(file);
 				var enumValues = Enum.GetValues(typeof(PictureCategory));
-				PictureCategory enumType = (PictureCategory)Enum.Parse(typeof(PictureCategory), category);  // Animal.Dog
+				PictureCategory enumType = (PictureCategory)Enum.Parse(typeof(PictureCategory), category);
 				Picture picture = new Picture(filename, Path.GetDirectoryName(file), Guid.NewGuid(), GenerateDate(), enumType, new User(), randomYear);
 				_pictures.Add(picture);
 			}
