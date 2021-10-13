@@ -31,9 +31,4 @@ public class PictureStorage : IPictureStorage  {
 	public void IncreaseDownloads(Guid pictureID) {
 		throw new System.NotImplementedException("Not implemented");
 	}
-
-	private Picture picture;
-
-	private PictureCategory pictureCategory;
-
 }
