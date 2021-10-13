@@ -61,8 +61,6 @@ html {
 body {
     /* Margin bottom by footer height */
     margin-bottom: 60px;
-//    background-image: url('https://images.unsplash.com/photo-1606669059257-19fc4ca49f79?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=774&q=80');
-    background-size: cover;
 }
 .footer {
     position: absolute;
@@ -102,5 +100,15 @@ body {
     border: 3px solid gray;
     padding: 10px;
     font-family: 'Segoe UI';
+}
+
+input[type="password"] {
+    font-style: normal;
+    font-weight: normal;
+    speak: none;
+    color: black;
+    text-transform: none;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
