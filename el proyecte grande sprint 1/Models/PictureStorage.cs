@@ -17,7 +17,7 @@ public class PictureStorage : IPictureStorage  {
 
 	private void Seed()
 	{
-		string path = Directory.GetCurrentDirectory() + @"\Images\categories";
+		string path = Directory.GetCurrentDirectory() + @"\wwwroot\Images\categories";
 		string[] subdirectories = Directory.GetDirectories(path);
 		foreach (var directory in subdirectories)
 		{
@@ -26,9 +26,11 @@ public class PictureStorage : IPictureStorage  {
 				var randomYear = random.Next(MinYearTaken, MaxYearTaken);
 				string category = Path.GetFileName(directory).ToUpper();
 				string filename = Path.GetFileName(file);
+				string route = $@"..\Images\categories\{category}\{filename}";
 				var enumValues = Enum.GetValues(typeof(PictureCategory));
 				PictureCategory enumType = (PictureCategory)Enum.Parse(typeof(PictureCategory), category);
-				Picture picture = new Picture(filename, Path.GetDirectoryName(file), Guid.NewGuid(), GenerateDate(), enumType, new User(), randomYear);
+				Picture picture = new Picture(filename, route, Guid.NewGuid(), GenerateDate(), enumType, new User(), randomYear);
+				//Picture picture = new Picture(filename, Path.GetDirectoryName(file), Guid.NewGuid(), GenerateDate(), enumType, new User(), randomYear);
 				_pictures.Add(picture);
 			}
 		}
@@ -42,7 +44,8 @@ public class PictureStorage : IPictureStorage  {
 		return $"{year}-{month}-{day}";
 	}
 
-	public IEnumerable<Picture> GetAllPictures() {
+	public IEnumerable<Picture> GetAllPictures()
+	{
 		return Pictures;
 	}
 
@@ -51,28 +54,35 @@ public class PictureStorage : IPictureStorage  {
 		Picture picture = _pictures.Find(picture => picture.Id == id);
 		return picture;
     }
-	public void AddPicture(Picture picture) {
+	public void AddPicture(Picture picture)
+	{
 		throw new System.NotImplementedException("Not implemented");
 	}
 	public void DeletePicture(Picture picture) {
 		throw new System.NotImplementedException("Not implemented");
 	}
-	public IEnumerable<Picture> GetAllPicturesByCategory(PictureCategory category) {
+	public IEnumerable<Picture> GetAllPicturesByCategory(PictureCategory category)
+	{
 		throw new System.NotImplementedException("Not implemented");
 	}
-	public IEnumerable<Picture> GetAllPicturesByUser(User username) {
+	public IEnumerable<Picture> GetAllPicturesByUser(User username)
+	{
 		throw new System.NotImplementedException("Not implemented");
 	}
-	public void AddNewComment(Guid pictureID,User username, Comment comment) {
+	public void AddNewComment(Guid pictureID,User username, Comment comment)
+	{
 		throw new System.NotImplementedException("Not implemented");
 	}
-	public void IncreaseViews(Guid pictureID) {
+	public void IncreaseViews(Guid pictureID)
+	{
 		throw new System.NotImplementedException("Not implemented");
 	}
-	public void IncreaseLikes(Guid pictureID) {
+	public void IncreaseLikes(Guid pictureID)
+	{
 		throw new System.NotImplementedException("Not implemented");
 	}
-	public void IncreaseDownloads(Guid pictureID) {
+	public void IncreaseDownloads(Guid pictureID)
+	{
 		throw new System.NotImplementedException("Not implemented");
 	}
 }
