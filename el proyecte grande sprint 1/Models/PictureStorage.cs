@@ -30,7 +30,8 @@ public class PictureStorage : IPictureStorage  {
 				string filename = Path.GetFileName(file);
 				var enumValues = Enum.GetValues(typeof(PictureCategory));
 				PictureCategory enumType = (PictureCategory)Enum.Parse(typeof(PictureCategory), category);  // Animal.Dog
-				_pictures.Add(new Picture(filename, Path.GetDirectoryName(file), Guid.NewGuid(), GenerateDate(), enumType, new User(), randomYear));
+				Picture picture = new Picture(filename, Path.GetDirectoryName(file), Guid.NewGuid(), GenerateDate(), enumType, new User(), randomYear);
+				_pictures.Add(picture);
 			}
 		}
 	}
