@@ -16,6 +16,24 @@ public class PictureStorage : IPictureStorage  {
 		Seed();
 	}
 
+	private void Seed()
+	{
+		string path = Directory.GetCurrentDirectory() + @"\Images\categories";
+		string[] subdirectories = Directory.GetDirectories(path);
+		foreach (var directory in subdirectories)
+		{
+			foreach (var file in Directory.GetFiles(directory))
+			{
+				var randomYear = random.Next(MinYearTaken, MaxYearTaken);
+				string category = Path.GetFileName(directory).ToUpper();
+				string filename = Path.GetFileName(file);
+				var enumValues = Enum.GetValues(typeof(PictureCategory));
+				PictureCategory enumType = (PictureCategory)Enum.Parse(typeof(PictureCategory), category);  // Animal.Dog
+				_pictures.Add(new Picture(filename, Path.GetDirectoryName(file), Guid.NewGuid(), GenerateDate(), enumType, new User(), randomYear));
+			}
+		}
+	}
+
 	public IEnumerable<Picture> GetAllPictures() {
 		throw new System.NotImplementedException("Not implemented");
 	}
