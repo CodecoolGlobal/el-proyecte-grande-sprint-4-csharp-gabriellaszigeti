@@ -13,9 +13,11 @@ namespace el_proyecte_grande_sprint_1.Controllers
     {
         private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+        private IPictureStorage _pictureStorage;
+        public HomeController(ILogger<HomeController> logger, IPictureStorage pictureStorage)
         {
             _logger = logger;
+            _pictureStorage = pictureStorage;
         }
 
         public IActionResult Index()
@@ -27,7 +29,7 @@ namespace el_proyecte_grande_sprint_1.Controllers
         {
             return View();
         }
-        
+
         public IActionResult PicturesPage()
         {
             return View();
