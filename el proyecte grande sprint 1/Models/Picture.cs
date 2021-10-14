@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 
 public class Picture {
-	private string _name;
+	
 	private string _route;
 	private string _uploadDate;
 	private PictureCategory _category;
@@ -17,7 +17,7 @@ public class Picture {
 	string uploadDate, PictureCategory category,
 	User nameOfUploader, int yearTaken)
 	{
-		_name = name;
+		Name = name;
 		_route = route;
 		Id = id;
 		_uploadDate = uploadDate;
@@ -28,8 +28,9 @@ public class Picture {
 
     public Guid Id { get; private set;}
 	public string Route { get => _route; }
+	public string Name { get;}
 
-    public void AddComment(Comment comment, User username) {
+	public void AddComment(Comment comment, User username) {
 		throw new System.NotImplementedException("Not implemented");
 	}
 }

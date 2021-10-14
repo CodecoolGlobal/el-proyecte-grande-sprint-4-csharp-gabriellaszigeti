@@ -1,4 +1,7 @@
+using Microsoft.AspNetCore.Mvc;
 using System;
-
-public class PictureController {
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+public class PictureController: Controller {
 }
