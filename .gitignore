@@ -350,6 +350,9 @@ ASALocalRun/
 # Local History for Visual Studio
 .localhistory/
 
+# Images Folder
+/Images
+
 # BeatPulse healthcheck temp database
 healthchecksdb
 
@@ -361,3 +364,4 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+/el proyecte grande sprint 1/wwwroot/Images/categories
