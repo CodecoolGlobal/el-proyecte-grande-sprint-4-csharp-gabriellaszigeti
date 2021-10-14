@@ -32,7 +32,9 @@ namespace el_proyecte_grande_sprint_1.Controllers
 
         public IActionResult PicturesPage()
         {
-            return View();
+            var pictures = _pictureStorage.GetAllPictures();
+
+            return View(pictures);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
@@ -40,5 +42,6 @@ namespace el_proyecte_grande_sprint_1.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
     }
 }
