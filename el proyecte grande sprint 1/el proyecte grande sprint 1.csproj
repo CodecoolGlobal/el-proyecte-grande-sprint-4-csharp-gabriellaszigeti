@@ -5,8 +5,4 @@
     <RootNamespace>el_proyecte_grande_sprint_1</RootNamespace>
   </PropertyGroup>
 
-  <ItemGroup>
-    <Folder Include="wwwroot\Images\categories\" />
-  </ItemGroup>
-
 </Project>
