@@ -1,12 +1,3 @@
-<div id="top"></div>
-
-[![Contributors][contributors-shield]][contributors-url]
-[![Forks][forks-shield]][forks-url]
-[![Stargazers][stars-shield]][stars-url]
-[![Issues][issues-shield]][issues-url]
-[![MIT License][license-shield]][license-url]
-[![LinkedIn][linkedin-shield]][linkedin-url]
-
 ProjectLens
 ========
 
@@ -55,19 +46,3 @@ License
 -------
 
 The project is currently not licensed, Open Source.
-
-<!-- MARKDOWN LINKS & IMAGES -->
-<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[contributors-shield]: https://img.shields.io/github/contributors/kprohaszka/el-proyecte-grande-sprint-1-csharp-gabriellaszigeti.svg?style=for-the-badge
-[contributors-url]: https://github.com/CodecoolGlobal/el-proyecte-grande-sprint-1-csharp-gabriellaszigeti/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/kprohaszka/el-proyecte-grande-sprint-1-csharp-gabriellaszigeti.svg?style=for-the-badge
-[forks-url]: 
-[stars-shield]: https://img.shields.io/github/stars/kprohaszka/el-proyecte-grande-sprint-1-csharp-gabriellaszigeti.svg?style=for-the-badge
-[stars-url]: https://github.com/kprohaszka/Bel-proyecte-grande-sprint-1-csharp-gabriellaszigeti/stargazers
-[issues-shield]: https://img.shields.io/github/issues/kprohaszka/el-proyecte-grande-sprint-1-csharp-gabriellaszigeti.svg?style=for-the-badge
-[issues-url]: https://github.com/othneildrew/el-proyecte-grande-sprint-1-csharp-gabriellaszigeti/issues
-[license-shield]: https://img.shields.io/github/license/kprohaszka/Best-README-Template.svg?style=for-the-badge
-[license-url]: https://github.com/kprohaszka/el-proyecte-grande-sprint-1-csharp-gabriellaszigeti/blob/master/LICENSE.txt
-[linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
-[linkedin-url]: https://www.linkedin.com/in/konradprohaszka/
-[product-screenshot]:
