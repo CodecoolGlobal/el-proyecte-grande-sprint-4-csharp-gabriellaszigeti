@@ -1,0 +1,18 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<body style="background-image: url(backgrounds/spacex.jpg)";
+
+>
+
+    <div class="search-container">
+        <button class="nav-link" type="button" id="btn" onclick="location.href='@Url.Action("PicturesPage","Home")'">Discover!</button> <br />
+        <form>
+            <input class="search-bar" type="text" placeholder="Search">
+            <br /><br />
+            <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+        </form>
+
+    </div>
+</body>

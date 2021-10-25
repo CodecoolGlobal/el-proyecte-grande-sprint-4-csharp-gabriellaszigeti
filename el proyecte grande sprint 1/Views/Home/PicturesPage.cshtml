@@ -1,0 +1,23 @@
+﻿@model List<Picture>
+
+@{
+    ViewData["Title"] = "Pictures page";
+}
+<div class="logo-container">
+
+    <h1>&zwnj;</h1>
+</div>
+<h3>Explore</h3>
+<br />
+
+<div class='images-center'>
+
+    @foreach (var picture in Model)
+    {
+        <article class="image-container">
+            <img src="@picture.Route" alt="image" class='image-img'>
+        </article>
+
+    }
+</div>
+
