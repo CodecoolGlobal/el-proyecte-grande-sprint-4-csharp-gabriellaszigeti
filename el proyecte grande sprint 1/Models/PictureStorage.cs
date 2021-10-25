@@ -2,7 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 
-public class PictureStorage : IPictureStorage  {
+public class PictureStorage : IPictureStorage
+{
 	private List<Picture> _pictures;
 	Random random = new Random();
 	public const int MinYearTaken = 1826;
@@ -17,20 +18,23 @@ public class PictureStorage : IPictureStorage  {
 
 	private void Seed()
 	{
-		string path = Directory.GetCurrentDirectory() + @"\wwwroot\Images\categories";
-		string[] subdirectories = Directory.GetDirectories(path);
-		foreach (var directory in subdirectories)
+		string currentDir = Directory.GetCurrentDirectory();
+		string[] paths = { currentDir, "wwwroot", "Images", "categories" };
+		string path = Path.Combine(paths);
+
+		foreach (var directory in Directory.GetDirectories(path))
 		{
 			foreach (var file in Directory.GetFiles(directory))
 			{
-				var randomYear = random.Next(MinYearTaken, MaxYearTaken);
+				int randomYear = random.Next(MinYearTaken, MaxYearTaken);
 				string category = Path.GetFileName(directory).ToUpper();
 				string filename = Path.GetFileName(file);
 				string route = $@"..\Images\categories\{category}\{filename}";
-				var enumValues = Enum.GetValues(typeof(PictureCategory));
 				PictureCategory enumType = (PictureCategory)Enum.Parse(typeof(PictureCategory), category);
-				Picture picture = new Picture(filename, route, Guid.NewGuid(), GenerateDate(), enumType, new User(), randomYear);
-				//Picture picture = new Picture(filename, Path.GetDirectoryName(file), Guid.NewGuid(), GenerateDate(), enumType, new User(), randomYear);
+
+				Picture picture = new Picture(filename, route, Guid.NewGuid(),
+					GenerateDate(), enumType, new User(), randomYear);
+
 				_pictures.Add(picture);
 			}
 		}
@@ -50,15 +54,16 @@ public class PictureStorage : IPictureStorage  {
 	}
 
 	public Picture GetPictureById(Guid id)
-    {
+	{
 		Picture picture = _pictures.Find(picture => picture.Id == id);
 		return picture;
-    }
+	}
 	public void AddPicture(Picture picture)
 	{
 		throw new System.NotImplementedException("Not implemented");
 	}
-	public void DeletePicture(Picture picture) {
+	public void DeletePicture(Picture picture)
+	{
 		throw new System.NotImplementedException("Not implemented");
 	}
 	public IEnumerable<Picture> GetAllPicturesByCategory(PictureCategory category)
@@ -69,7 +74,7 @@ public class PictureStorage : IPictureStorage  {
 	{
 		throw new System.NotImplementedException("Not implemented");
 	}
-	public void AddNewComment(Guid pictureID,User username, Comment comment)
+	public void AddNewComment(Guid pictureID, User username, Comment comment)
 	{
 		throw new System.NotImplementedException("Not implemented");
 	}
