@@ -41,7 +41,21 @@ export default function SignUp() {
 
   return (
     <ThemeProvider theme={theme}>
-      <Container component="main" maxWidth="xs">
+      <Container component="main" maxWidth="false">
+      <Box sx={{ height: '85vh' }} style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    flexDirection: 'row',
+                }} >
+                    <Box sx={{ height: '60%', width: '80%', backgroundColor: 'white', opacity: '100%' }} style={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        flexDirection: 'row',
+                        borderRadius: '10px',
+
+                    }}>
         <CssBaseline />
         <Box
           sx={{
@@ -123,9 +137,11 @@ export default function SignUp() {
                 </Link>
               </Grid>
             </Grid>
+        <Copyright sx={{ mt: 5 }} />
           </Box>
         </Box>
-        <Copyright sx={{ mt: 5 }} />
+        </Box>
+        </Box>
       </Container>
     </ThemeProvider>
   );

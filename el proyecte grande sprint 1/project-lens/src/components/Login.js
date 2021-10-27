@@ -40,8 +40,22 @@ export default function SignIn() {
   };
 
   return (
-    <ThemeProvider theme={theme}>
-      <Container component="main" maxWidth="xs">
+      <ThemeProvider theme={theme}>
+      <Container component="main" maxWidth="false">
+      <Box sx={{ height: '85vh' }} style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    flexDirection: 'row',
+                }} >
+                    <Box sx={{ height: '48%', width: '40%', backgroundColor: 'white', opacity: '100%' }} style={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        flexDirection: 'row',
+                        borderRadius: '10px',
+
+                    }}>
         <CssBaseline />
         <Box
           sx={{
@@ -102,9 +116,11 @@ export default function SignIn() {
                 </Link>
               </Grid>
             </Grid>
+        <Copyright sx={{ mt: 8, mb: 4 }} />
           </Box>
         </Box>
-        <Copyright sx={{ mt: 8, mb: 4 }} />
+        </Box>
+        </Box>
       </Container>
     </ThemeProvider>
   );
