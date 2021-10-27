@@ -2,7 +2,6 @@ import './App.css';
 import React from 'react';
 import Navbar from './components/Navbar';
 import MainPage from './components/MainPage';
-import Footer from './components/Footer';
 import background from "./components/spacex.jpg";
 import { Container } from 'reactstrap';
 
@@ -13,8 +12,6 @@ function App() {
                 </Navbar>
             <MainPage>
             </MainPage>
-            <Footer>
-                </Footer>
             </Container>
   );
 }
