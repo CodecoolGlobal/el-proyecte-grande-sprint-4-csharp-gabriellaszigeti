@@ -4,12 +4,12 @@ import Navbar from './components/Navbar';
 import MainPage from './components/MainPage';
 import background from "./components/spacex.jpg";
 import { Container } from 'reactstrap';
+import './App.css';
 
 function App() {
     return (
         <Container style={{ backgroundImage: `url(${background})`, backgroundSize: 'cover', width:'100%' }}>
-            <Navbar>
-                </Navbar>
+                <Navbar/>
             <MainPage>
             </MainPage>
                 <Footer/>
