@@ -18,7 +18,7 @@ import MailIcon from '@mui/icons-material/Mail';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import MoreIcon from '@mui/icons-material/MoreVert';
 import Button from '@mui/material/Button';
-
+import { Link } from 'react-router-dom';
 
 const Search = styled('div')(({ theme }) => ({
     position: 'relative',
@@ -178,7 +178,12 @@ export default function PrimarySearchAppBar() {
                         component="div"
                         sx={{ display: { xs: 'none', sm: 'block' } }}
                     >
-                        LENS
+                        <Button
+                    style={{color: '#FFFFFF', fontSize: '30px'}}
+                    size='large'
+                    component={Link} to="/" >
+                                LENS
+                            </Button>
                     </Typography>
                     <Search >
                         <SearchIconWrapper>
@@ -192,8 +197,16 @@ export default function PrimarySearchAppBar() {
                     </Search>
                     <Box sx={{ flexGrow: 1 }} />
                     <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
-                        <Button color="inherit">Sign Up</Button>
-                        <Button color="inherit">Login</Button>
+                    <Button
+                    style={{backgroundColor: '#FFFFFF', color: '#000000'}}
+                    component={Link} to="/signup" >
+                                SIGN UP
+                    </Button>
+                    <Button
+                    style={{color: '#FFFFFF'}}
+                    component={Link} to="/login" >
+                                LOGIN
+                            </Button>
 
                         <IconButton size="large" aria-label="show 4 new mails" color="inherit">
                             <Badge color="error">
