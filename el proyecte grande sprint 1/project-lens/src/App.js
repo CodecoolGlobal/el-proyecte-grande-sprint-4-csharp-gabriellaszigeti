@@ -1,4 +1,4 @@
-import './App.css';
+import Footer from './components/Footer';
 import React from 'react';
 import Navbar from './components/Navbar';
 import MainPage from './components/MainPage';
@@ -12,8 +12,8 @@ function App() {
                 </Navbar>
             <MainPage>
             </MainPage>
+                <Footer/>
             </Container>
   );
 }
-
 export default App;
