@@ -1,8 +1,9 @@
 import './App.css';
+import Footer from './components/Footer';
 
 function App() {
   return (
-    <p>Place of Navbar</p>
+    <Footer/>
   );
 }
 
