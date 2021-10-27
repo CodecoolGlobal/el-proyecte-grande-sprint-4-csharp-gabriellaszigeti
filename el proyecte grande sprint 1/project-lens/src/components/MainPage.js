@@ -4,7 +4,6 @@ import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 
-
 export default function SimpleContainer() {
     return (
         <React.Fragment>
@@ -16,10 +15,19 @@ export default function SimpleContainer() {
                     justifyContent: 'center',
                     flexDirection: 'row',
                 }} >
-                    <Button variant="contained" style={{ backgroundColor: 'gray', width: '40%', height: '10%' }}>Discover</Button>
+                    <Box sx={{ height: '200px', width: '500px', backgroundColor: 'white', opacity: '80%' }} style={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        flexDirection: 'row',
+                        borderRadius: '10px',
+
+                    }}>
+                        <Button variant="contained" style={{ backgroundColor: 'black', width: '60%', height: '30%' }}>Discover</Button>
                     </Box>
+                </Box>
             </Container>
-            </React.Fragment>
+        </React.Fragment>
     );
 }
 
