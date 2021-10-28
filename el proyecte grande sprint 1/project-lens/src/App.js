@@ -10,7 +10,7 @@ import DiscoverView from './components/DiscoverView';
 
 function App() {
     return (
-        <Container style={{ backgroundImage: `url(${background})`, backgroundSize: 'cover', width: '100%', minHeight:'750px' }}>
+        <Container style={{ backgroundImage: `url(${background})`, backgroundSize: 'cover', width: '100%', minHeight:'100vh' }}>
             <Navbar />
             <BrowserRouter>
                     <Route path="/" component={MainPage} exact />
