@@ -8,6 +8,7 @@ import './App.css';
 import {Route, Switch } from 'react-router-dom';
 import Login from "./components/Login";
 import Signup from "./components/Signup";
+import DiscoverView from './components/DiscoverView';
 
 function App() {
     return (
@@ -16,6 +17,7 @@ function App() {
                     <Route path="/" component={MainPage} exact />
                     <Route exact path="/login" component={Login} />
                     <Route exact path="/signup" component={Signup} />
+                    <Route path="/discover" component={DiscoverView} exact />
             <Footer />
         </Container>
     );

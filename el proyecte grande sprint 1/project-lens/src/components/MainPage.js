@@ -3,6 +3,7 @@ import CssBaseline from '@mui/material/CssBaseline';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
+import { Link } from 'react-router-dom';
 
 export default function SimpleContainer() {
     return (
@@ -23,7 +24,7 @@ export default function SimpleContainer() {
                         borderRadius: '10px',
 
                     }}>
-                        <Button variant="contained" style={{ backgroundColor: 'black', width: '60%', height: '30%' }}>Discover</Button>
+                        <Button variant="contained" style={{ backgroundColor: 'black', width: '60%', height: '30%' }} component={Link} to="/discover" >Discover</Button>
                     </Box>
                 </Box>
             </Container>
