@@ -37,7 +37,7 @@ export default function DiscoverView() {
 
         return (
 
-            <Box sx={{ width: '100%', height: '100%', overflowY: 'scroll' }}>
+            <Box sx={{ width: '100%', height: '100%' }}>
                 <ImageList variant="masonry" cols={3} gap={8}>
                     {pictures.map((item) => (
                         <ImageListItem key={item.name}>
