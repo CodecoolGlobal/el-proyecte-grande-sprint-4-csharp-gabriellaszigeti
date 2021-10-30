@@ -8,7 +8,7 @@ using Microsoft.Extensions.Logging;
 
 namespace el_proyecte_grande_sprint_1.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/pictures")]
     [ApiController]
     public class PicturesController : ControllerBase
     {
@@ -24,12 +24,16 @@ namespace el_proyecte_grande_sprint_1.Controllers
 
 
         [HttpGet]
-        public IEnumerable<Picture> GetAllPictures()
+        public ActionResult<IEnumerable<Picture>> GetAllPictures()
         {
             var pictures = _pictureStorage.GetAllPictures();
-            return pictures;
+            if (pictures == null)
+                return NotFound();
+            else
+            {
+                return Ok(pictures);
+            }
         }
-
 
     }
 }
