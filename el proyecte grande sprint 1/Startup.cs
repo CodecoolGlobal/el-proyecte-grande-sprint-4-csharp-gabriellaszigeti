@@ -8,6 +8,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
+
 
 namespace el_proyecte_grande_sprint_1
 {
@@ -25,6 +27,10 @@ namespace el_proyecte_grande_sprint_1
         {
             services.AddControllersWithViews();
             services.AddSingleton<IPictureStorage, PictureStorage>();
+            services.AddSpaStaticFiles(configuration =>
+            {
+                configuration.RootPath = "project-lens/build";
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -53,6 +59,19 @@ namespace el_proyecte_grande_sprint_1
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
+
+            app.UseSpa(spa =>
+            {
+                spa.Options.SourcePath = "project-lens";
+
+                if (env.IsDevelopment())
+                {
+                    spa.UseReactDevelopmentServer(npmScript: "start");
+                }
+            });
         }
     }
 }
+
+
+
