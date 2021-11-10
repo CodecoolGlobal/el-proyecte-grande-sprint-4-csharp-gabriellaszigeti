@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
+using el_proyecte_grande_sprint_1.Models.DTO;
 
 namespace el_proyecte_grande_sprint_1.Controllers
 {
@@ -33,6 +34,13 @@ namespace el_proyecte_grande_sprint_1.Controllers
             {
                 return Ok(pictures);
             }
+        }
+
+
+        [HttpPost]
+        public IActionResult CreateImage([FromForm] ImageDTO img)
+        {
+            return Ok();
         }
 
     }
