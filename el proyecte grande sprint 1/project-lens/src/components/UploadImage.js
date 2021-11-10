@@ -14,7 +14,6 @@ export default function FileUploadPage() {
 		const formData = new FormData();
 
 		formData.append('Image', selectedFile);
-		console.log(selectedFile);
 
 		fetch(
 			'api/pictures',
