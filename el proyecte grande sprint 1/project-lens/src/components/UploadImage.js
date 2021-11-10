@@ -13,10 +13,11 @@ export default function FileUploadPage() {
 	const handleSubmission = () => {
 		const formData = new FormData();
 
-		formData.append('File', selectedFile);
+		formData.append('Image', selectedFile);
+		console.log(selectedFile);
 
 		fetch(
-			'/uploadimage',
+			'api/pictures',
 			{
 				method: 'POST',
 				body: formData,
@@ -37,13 +38,6 @@ return (
 		<input type="file" name="file" onChange={changeHandler} />
 		{isFilePicked ? (
 			<div>
-				<p>Filename: {selectedFile.name}</p>
-				<p>Filetype: {selectedFile.type}</p>
-				<p>Size in bytes: {selectedFile.size}</p>
-				<p>
-					lastModifiedDate:{' '}
-					{selectedFile.lastModifiedDate.toLocaleDateString()}
-				</p>
 			</div>
 		) : (
 			<p>Select a file to show details</p>
