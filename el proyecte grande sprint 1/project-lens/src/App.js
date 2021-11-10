@@ -10,7 +10,7 @@ import Login from "./components/Login";
 import Signup from "./components/Signup";
 import DiscoverView from './components/DiscoverView';
 import UploadPage from './components/UploadPage';
-import AlternativeUpload from './components/AlternativeUpload'
+import FileUploadPage from './components/UploadImage';
 
 function App() {
     return (
@@ -21,6 +21,7 @@ function App() {
                     <Route exact path="/signup" component={Signup} />
                     <Route path="/discover" component={DiscoverView} exact />
                     <Route path="/upload" component={UploadPage} exact />
+                    <Route path="/uploadtest" component={FileUploadPage} exact />
             <Footer />
         </Container>
     );
