@@ -10,6 +10,7 @@ using System.IO;
 using System.Drawing;
 using System.Drawing.Imaging;
 using Azure.Storage.Blobs;
+using Azure.Storage.Blobs.Models;
 
 namespace el_proyecte_grande_sprint_1.Controllers
 {
@@ -59,9 +60,24 @@ namespace el_proyecte_grande_sprint_1.Controllers
             memoryStream.Seek(0, SeekOrigin.Begin);
             await blobClient.UploadAsync(memoryStream, true);
 
-
-
             return Ok();
+        }
+
+        [HttpGet]
+        [Route("get-all-pictures")]
+        public async Task<ActionResult<IEnumerable<string>>>GetAllPicturesFromBlobContainer()
+        {
+            var connectionString = "DefaultEndpointsProtocol=https;AccountName=projectlens;AccountKey=9ras80E5iOB1hxIXVm00ew+bY42Pp9BQEf4kcPwqQG59OPQ6FLcr1uPu0q/6DLJn5Djld2cHr4JSlx6WE8bYBQ==;EndpointSuffix=core.windows.net";
+            var blobContainerClient = new BlobContainerClient(connectionString, "projectlens-blob1"); ;
+            List<string> picturesURL = new List<string>();
+
+            await foreach (var blobItem in blobContainerClient.GetBlobsAsync())
+            {
+                var blobClient = blobContainerClient.GetBlobClient(blobItem.Name);
+                var uri = blobClient.Uri;
+                picturesURL.Add(uri.OriginalString);
+            }
+            return Ok(picturesURL);
 
         }
 
