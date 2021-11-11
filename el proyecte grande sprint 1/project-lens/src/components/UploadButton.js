@@ -40,12 +40,12 @@ export default function UploadButtons() {
 <div>
         <label htmlFor="contained-button-file">
         <Input accept="image/*" id="contained-button-file" type="file" name="file" onChange={changeHandler} />
-        <Button variant="contained" component="span" style={{ backgroundColor: 'black', width: '60%', height: '30%' }}>
+              <Button variant="contained" component="span" className="uploadPageButton">
           Upload
         </Button>
       </label>
       <br/>
-			<Button variant="contained" style={{ backgroundColor: 'black', width: '60%', height: '30%' }} onClick={handleSubmission} >Submit</Button>
+			<Button variant="contained" className="uploadPageButton" onClick={handleSubmission} >Submit</Button>
   </div>
 	)
 };
