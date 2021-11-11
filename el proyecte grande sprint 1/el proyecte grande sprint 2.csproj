@@ -11,8 +11,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Azure.Storage.Blobs" Version="12.10.0" />
     <PackageReference Include="Microsoft.AspNetCore.SpaServices" Version="3.1.21" />
     <PackageReference Include="Microsoft.AspNetCore.SpaServices.Extensions" Version="3.1.19" />
+    <PackageReference Include="System.Drawing.Common" Version="6.0.0" />
   </ItemGroup>
 
 </Project>

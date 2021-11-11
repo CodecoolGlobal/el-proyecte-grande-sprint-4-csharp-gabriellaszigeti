@@ -3,7 +3,6 @@ import Box from '@mui/material/Box';
 import ImageList from '@mui/material/ImageList';
 import ImageListItem from '@mui/material/ImageListItem';
 import { useState, useEffect } from 'react';
-import axios from "axios";
 
 
 
@@ -14,7 +13,7 @@ export default function DiscoverView() {
     const [pictures, setPictures] = useState([]);
 
     useEffect(() => {
-        fetch("/api/pictures")
+        fetch("/api/pictures/get-all-pictures")
             .then(response => response.json())
             .then((result) => {
                 console.log(result)
@@ -42,8 +41,8 @@ export default function DiscoverView() {
                     {pictures.map((item) => (
                         <ImageListItem key={item.name}>
                             <img
-                                src={`${item.route}?w=248&fit=crop&auto=format`}
-                                srcSet={`${item.route}?w=248&fit=crop&auto=format&dpr=2 2x`}
+                                src={`${item.url}?w=248&fit=crop&auto=format`}
+                                srcSet={`${item.url}?w=248&fit=crop&auto=format&dpr=2 2x`}
                                 alt={item.title}
                                 loading="lazy"
                             />

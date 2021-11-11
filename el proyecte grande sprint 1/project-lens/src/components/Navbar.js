@@ -204,6 +204,11 @@ export default function PrimarySearchAppBar() {
                     style={{color: '#FFFFFF'}}
                     component={Link} to="/login" >
                                 LOGIN
+                        </Button>
+                        <Button
+                    style={{color: '#FFFFFF'}}
+                    component={Link} to="/upload" >
+                                Upload
                             </Button>
 
                         <IconButton size="large" aria-label="show 4 new mails" color="inherit">
