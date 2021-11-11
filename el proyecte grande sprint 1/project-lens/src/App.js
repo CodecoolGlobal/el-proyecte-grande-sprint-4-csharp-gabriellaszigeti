@@ -21,7 +21,6 @@ function App() {
                     <Route exact path="/signup" component={Signup} />
                     <Route path="/discover" component={DiscoverView} exact />
                     <Route path="/upload" component={UploadPage} exact />
-                    <Route path="/uploadtest" component={FileUploadPage} exact />
             <Footer />
         </Container>
     );
