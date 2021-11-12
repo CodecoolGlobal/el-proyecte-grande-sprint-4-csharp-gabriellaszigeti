@@ -16,31 +16,11 @@ namespace el_proyecte_grande_sprint_1.Controllers
 
         private readonly ILogger<PicturesController> _logger;
 
-        private IPictureStorage _pictureStorage;
-
         private IConfiguration _configuration;
         public PicturesController(ILogger<PicturesController> logger, IPictureStorage pictureStorage, IConfiguration configuration)
         {
             _logger = logger;
             _configuration = configuration;
-        }
-
-
-        [HttpPost]
-        public async Task<ActionResult> CreateImage([FromForm] ImageDTO img)
-        {
-            using var memoryStream = new MemoryStream();
-            await img.Image.CopyToAsync(memoryStream);
-
-            BlobServiceClient blobServiceClient = new BlobServiceClient(_configuration["AzureStorageConnectionString"]);
-            BlobContainerClient containerClient = blobServiceClient.GetBlobContainerClient(_configuration["ContentContainer"]);
-            BlobClient blobClient = containerClient.GetBlobClient(img.Image.FileName);
-
-            memoryStream.Seek(0, SeekOrigin.Begin);
-
-            await blobClient.UploadAsync(memoryStream, true);
-
-            return Ok();
         }
 
 
@@ -63,5 +43,21 @@ namespace el_proyecte_grande_sprint_1.Controllers
 
         }
 
+        [HttpPost]
+        public async Task<ActionResult> CreateImage([FromForm] ImageDTO img)
+        {
+            using var memoryStream = new MemoryStream();
+            await img.Image.CopyToAsync(memoryStream);
+
+            BlobServiceClient blobServiceClient = new BlobServiceClient(_configuration["AzureStorageConnectionString"]);
+            BlobContainerClient containerClient = blobServiceClient.GetBlobContainerClient(_configuration["ContentContainer"]);
+            BlobClient blobClient = containerClient.GetBlobClient(img.Image.FileName);
+
+            memoryStream.Seek(0, SeekOrigin.Begin);
+
+            await blobClient.UploadAsync(memoryStream, true);
+
+            return Ok();
+        }
     }
 }
