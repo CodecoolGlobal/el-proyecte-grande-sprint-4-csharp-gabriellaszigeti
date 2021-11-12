@@ -1,17 +1,11 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.Extensions.Logging;
+﻿using Azure.Storage.Blobs;
 using el_proyecte_grande_sprint_1.Models.DTO;
-using System.IO;
-using System.Drawing;
-using System.Drawing.Imaging;
-using Azure.Storage.Blobs;
-using Azure.Storage.Blobs.Models;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
+using System.Collections.Generic;
+using System.IO;
+using System.Threading.Tasks;
 
 namespace el_proyecte_grande_sprint_1.Controllers
 {
