@@ -1,6 +1,8 @@
+using el_proyecte_grande_sprint_1.Models.DTO;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Threading.Tasks;
 
 public class PictureStorage : IPictureStorage
 {
@@ -14,6 +16,15 @@ public class PictureStorage : IPictureStorage
 	{
 		_pictures = new List<Picture>();
 		Seed();
+	}
+
+	public async Task<Stream> CopyImageFromDataToStream(ImageUploadDTO partialImageData)
+    {
+		using var fileStream = new MemoryStream();
+		await partialImageData.Image.CopyToAsync(fileStream);
+		fileStream.Seek(0, SeekOrigin.Begin);
+
+		return fileStream;
 	}
 
 	private void Seed()
