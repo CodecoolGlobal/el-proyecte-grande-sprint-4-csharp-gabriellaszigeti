@@ -9,7 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
-
+using el_proyecte_grande_sprint_1.Services;
 
 namespace el_proyecte_grande_sprint_1
 {
@@ -27,6 +27,7 @@ namespace el_proyecte_grande_sprint_1
         {
             services.AddControllersWithViews();
             services.AddSingleton<IPictureStorage, PictureStorage>();
+            services.AddSingleton<IAzureBlobStorageService, AzureBlobStorageService>();
             services.AddSpaStaticFiles(configuration =>
             {
                 configuration.RootPath = "project-lens/build";
