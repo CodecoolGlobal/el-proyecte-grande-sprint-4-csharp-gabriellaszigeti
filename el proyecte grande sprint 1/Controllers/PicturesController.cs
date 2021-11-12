@@ -45,7 +45,6 @@ namespace el_proyecte_grande_sprint_1.Controllers
 
 
         [HttpGet]
-        [Route("get-all-pictures")]
         public async Task<ActionResult<IEnumerable<AzurePictureDTO>>>GetAllPicturesFromBlobContainer()
         {
             var blobContainerClient = new BlobContainerClient(_configuration["AzureStorageConnectionString"], _configuration["ContentContainer"]);
