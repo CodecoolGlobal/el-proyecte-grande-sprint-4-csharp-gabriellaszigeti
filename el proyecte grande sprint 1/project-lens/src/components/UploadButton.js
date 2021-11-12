@@ -26,7 +26,7 @@ export default function UploadButtons() {
 
     formData.append("Image", selectedFile);
 
-      fetch("api/pictures/get-all-pictures", {
+      fetch("api/pictures", {
       method: "POST",
       body: formData,
     })
