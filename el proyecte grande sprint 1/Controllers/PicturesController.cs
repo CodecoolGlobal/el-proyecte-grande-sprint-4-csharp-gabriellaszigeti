@@ -18,6 +18,9 @@ namespace el_proyecte_grande_sprint_1.Controllers
         private readonly ILogger<PicturesController> _logger;
         private IConfiguration _configuration;
         private IAzureBlobStorageService _azureBlobStorageService;
+        private IPictureStorage _pictureStorage;
+        private string _contentContainer;
+
 
         public PicturesController(ILogger<PicturesController> logger, IPictureStorage pictureStorage,
             IConfiguration configuration, IAzureBlobStorageService azureBlobStorageService)
@@ -25,6 +28,8 @@ namespace el_proyecte_grande_sprint_1.Controllers
             _logger = logger;
             _configuration = configuration;
             _azureBlobStorageService = azureBlobStorageService;
+            _pictureStorage = pictureStorage;
+            _contentContainer = _configuration["ContentContainer"];
         }
 
 
@@ -32,25 +37,18 @@ namespace el_proyecte_grande_sprint_1.Controllers
         public async Task<ActionResult<IEnumerable<AzurePictureDTO>>>GetAllPicturesFromBlobContainer()
         {
             var picturesFromAzureContainer = await
-                _azureBlobStorageService.GetAllPicturesFromBlobContainer(_configuration["ContentContainer"]);
+                _azureBlobStorageService.GetAllPicturesFromBlobContainer(_contentContainer);
 
             return Ok(picturesFromAzureContainer);
 
         }
 
         [HttpPost]
-        public async Task<ActionResult> CreateImage([FromForm] ImageUploadDTO img)
+        public async Task<ActionResult> UploadImageToAzureStorage([FromForm] ImageUploadDTO partialImageData)
         {
-            using var memoryStream = new MemoryStream();
-            await img.Image.CopyToAsync(memoryStream);
+            Stream fileStream = await _pictureStorage.CopyImageFromDataToStream(partialImageData);
 
-            BlobServiceClient blobServiceClient = new BlobServiceClient(_configuration["AzureStorageConnectionString"]);
-            BlobContainerClient containerClient = blobServiceClient.GetBlobContainerClient(_configuration["ContentContainer"]);
-            BlobClient blobClient = containerClient.GetBlobClient(img.Image.FileName);
-
-            memoryStream.Seek(0, SeekOrigin.Begin);
-
-            await blobClient.UploadAsync(memoryStream, true);
+            await _azureBlobStorageService.UploadImage(partialImageData, _contentContainer, fileStream);
 
             return Ok();
         }
