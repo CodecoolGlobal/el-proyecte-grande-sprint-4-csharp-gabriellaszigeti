@@ -44,7 +44,7 @@ namespace el_proyecte_grande_sprint_1.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> CreateImage([FromForm] ImageDTO img)
+        public async Task<ActionResult> CreateImage([FromForm] ImageUploadDTO img)
         {
             using var memoryStream = new MemoryStream();
             await img.Image.CopyToAsync(memoryStream);
