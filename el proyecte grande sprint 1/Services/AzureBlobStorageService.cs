@@ -10,12 +10,12 @@ using System.Threading.Tasks;
 
 namespace el_proyecte_grande_sprint_1.Services
 {
-    public class AzureBlogStorageService
+    public class AzureBlobStorageService
     {
         private readonly BlobServiceClient _blobServiceClient;
         private readonly IConfiguration _configuration;
 
-        public AzureBlogStorageService(IConfiguration configuration)
+        public AzureBlobStorageService(IConfiguration configuration)
         {
             _configuration = configuration;
             _blobServiceClient = new BlobServiceClient(_configuration["AzureStorageConnectionString"]);
