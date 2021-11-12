@@ -1,5 +1,6 @@
 ﻿using Azure.Storage.Blobs;
 using el_proyecte_grande_sprint_1.Models.DTO;
+using el_proyecte_grande_sprint_1.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
@@ -15,12 +16,15 @@ namespace el_proyecte_grande_sprint_1.Controllers
     {
 
         private readonly ILogger<PicturesController> _logger;
-
         private IConfiguration _configuration;
-        public PicturesController(ILogger<PicturesController> logger, IPictureStorage pictureStorage, IConfiguration configuration)
+        private IAzureBlobStorageService _azureBlobStorageService;
+
+        public PicturesController(ILogger<PicturesController> logger, IPictureStorage pictureStorage,
+            IConfiguration configuration, IAzureBlobStorageService azureBlobStorageService)
         {
             _logger = logger;
             _configuration = configuration;
+            _azureBlobStorageService = azureBlobStorageService;
         }
 
 
