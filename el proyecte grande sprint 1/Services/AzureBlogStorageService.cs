@@ -41,7 +41,7 @@ namespace el_proyecte_grande_sprint_1.Services
 
         }
 
-        public async Task<Uri> UploadImage(ImageDTO partialImageData, string container, Stream fileStream)
+        public async Task<Uri> UploadImage(ImageUploadDTO partialImageData, string container, Stream fileStream)
         {
             var blobContainerClient = _blobServiceClient.GetBlobContainerClient(container);
 
