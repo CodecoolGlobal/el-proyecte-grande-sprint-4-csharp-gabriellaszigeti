@@ -31,19 +31,10 @@ namespace el_proyecte_grande_sprint_1.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<AzurePictureDTO>>>GetAllPicturesFromBlobContainer()
         {
-            var blobContainerClient = new BlobContainerClient(_configuration["AzureStorageConnectionString"], _configuration["ContentContainer"]);
-            List<AzurePictureDTO> azurePictures = new List<AzurePictureDTO>();
+            var picturesFromAzureContainer = await
+                _azureBlobStorageService.GetAllPicturesFromBlobContainer(_configuration["ContentContainer"]);
 
-            await foreach (var blobItem in blobContainerClient.GetBlobsAsync())
-            {
-                var blobClient = blobContainerClient.GetBlobClient(blobItem.Name);
-                var uri = blobClient.Uri;
-
-                AzurePictureDTO azurePicture = new AzurePictureDTO(uri.OriginalString, blobItem.Name, blobItem.Name);
-                azurePictures.Add(azurePicture);
-            }
-
-            return Ok(azurePictures);
+            return Ok(picturesFromAzureContainer);
 
         }
 
