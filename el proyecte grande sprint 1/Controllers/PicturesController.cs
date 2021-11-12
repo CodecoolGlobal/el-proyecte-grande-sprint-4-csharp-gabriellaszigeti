@@ -11,6 +11,7 @@ using System.Drawing;
 using System.Drawing.Imaging;
 using Azure.Storage.Blobs;
 using Azure.Storage.Blobs.Models;
+using Microsoft.Extensions.Configuration;
 
 namespace el_proyecte_grande_sprint_1.Controllers
 {
@@ -20,15 +21,15 @@ namespace el_proyecte_grande_sprint_1.Controllers
     {
 
         private readonly ILogger<PicturesController> _logger;
-        private string _connectionString = "DefaultEndpointsProtocol=https;AccountName=projectlens;AccountKey=9ras80E5iOB1hxIXVm00ew+bY42Pp9BQEf4kcPwqQG59OPQ6FLcr1uPu0q/6DLJn5Djld2cHr4JSlx6WE8bYBQ==;EndpointSuffix=core.windows.net";
-        private string _blobContainerName = "projectlens-blob1";
-
 
         private IPictureStorage _pictureStorage;
-        public PicturesController(ILogger<PicturesController> logger, IPictureStorage pictureStorage)
+
+        private IConfiguration _configuration;
+        public PicturesController(ILogger<PicturesController> logger, IPictureStorage pictureStorage, IConfiguration configuration)
         {
             _logger = logger;
             _pictureStorage = pictureStorage;
+            _configuration = configuration;
         }
 
 
@@ -51,8 +52,8 @@ namespace el_proyecte_grande_sprint_1.Controllers
             using var memoryStream = new MemoryStream();
             await img.Image.CopyToAsync(memoryStream);
 
-            BlobServiceClient blobServiceClient = new BlobServiceClient(_connectionString);
-            BlobContainerClient containerClient = blobServiceClient.GetBlobContainerClient(_blobContainerName);
+            BlobServiceClient blobServiceClient = new BlobServiceClient(_configuration["AzureStorageConnectionString"]);
+            BlobContainerClient containerClient = blobServiceClient.GetBlobContainerClient(_configuration["ContentContainer"]);
             BlobClient blobClient = containerClient.GetBlobClient(img.Image.FileName);
 
             memoryStream.Seek(0, SeekOrigin.Begin);
@@ -67,7 +68,7 @@ namespace el_proyecte_grande_sprint_1.Controllers
         [Route("get-all-pictures")]
         public async Task<ActionResult<IEnumerable<AzurePictureDTO>>>GetAllPicturesFromBlobContainer()
         {
-            var blobContainerClient = new BlobContainerClient(_connectionString, _blobContainerName);
+            var blobContainerClient = new BlobContainerClient(_configuration["AzureStorageConnectionString"], _configuration["ContentContainer"]);
             List<AzurePictureDTO> azurePictures = new List<AzurePictureDTO>();
 
             await foreach (var blobItem in blobContainerClient.GetBlobsAsync())
