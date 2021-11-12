@@ -22,21 +22,7 @@ namespace el_proyecte_grande_sprint_1.Controllers
         public PicturesController(ILogger<PicturesController> logger, IPictureStorage pictureStorage, IConfiguration configuration)
         {
             _logger = logger;
-            _pictureStorage = pictureStorage;
             _configuration = configuration;
-        }
-
-
-        [HttpGet]
-        public ActionResult<IEnumerable<Picture>> GetAllPictures()
-        {
-            var pictures = _pictureStorage.GetAllPictures();
-            if (pictures == null)
-                return NotFound();
-            else
-            {
-                return Ok(pictures);
-            }
         }
 
 
