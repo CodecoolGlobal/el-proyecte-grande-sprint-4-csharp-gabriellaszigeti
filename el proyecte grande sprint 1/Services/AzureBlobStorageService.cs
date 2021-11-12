@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace el_proyecte_grande_sprint_1.Services
 {
-    public class AzureBlobStorageService
+    public class AzureBlobStorageService : IAzureBlobStorageService
     {
         private readonly BlobServiceClient _blobServiceClient;
         private readonly IConfiguration _configuration;
