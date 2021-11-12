@@ -20,7 +20,7 @@ public class PictureStorage : IPictureStorage
 
     public async Task<Stream> CopyImageFromDataToStream(ImageUploadDTO partialImageData)
     {
-        using var fileStream = new MemoryStream();
+        var fileStream = new MemoryStream();
         await partialImageData.Image.CopyToAsync(fileStream);
         fileStream.Seek(0, SeekOrigin.Begin);
 
