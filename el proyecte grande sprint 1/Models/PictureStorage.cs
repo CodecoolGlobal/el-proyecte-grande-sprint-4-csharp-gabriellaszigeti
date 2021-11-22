@@ -13,7 +13,6 @@ public class PictureStorage : IPictureStorage
 	public PictureStorage()
 	{
 		_pictures = new List<Picture>();
-		Seed();
 	}
 
 	private void Seed()
