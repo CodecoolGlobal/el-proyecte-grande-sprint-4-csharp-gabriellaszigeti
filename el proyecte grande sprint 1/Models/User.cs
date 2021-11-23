@@ -7,7 +7,7 @@ public class User {
 	public int Id { get; set; }
 	public string Email { get; set; }
 	public string Username { get; set; }
-	public Rfc2898DeriveBytes Password { get; set;}
+	public string Password { get; set;}
 
 	public Rfc2898DeriveBytes HashPassword(string password) {
 		throw new System.NotImplementedException("Not implemented");
