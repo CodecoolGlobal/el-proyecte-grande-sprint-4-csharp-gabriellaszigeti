@@ -9,7 +9,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
-
+using el_proyecte_grande_sprint_1.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace el_proyecte_grande_sprint_1
 {
@@ -26,6 +27,8 @@ namespace el_proyecte_grande_sprint_1
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            services.AddDbContext<ApplicationContext>(options =>
+                options.UseSqlServer(Configuration.GetConnectionString("ProjectLensDatabase")));
             services.AddSingleton<IPictureStorage, PictureStorage>();
             services.AddSpaStaticFiles(configuration =>
             {
