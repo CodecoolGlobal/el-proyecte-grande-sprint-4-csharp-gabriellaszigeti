@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
 using el_proyecte_grande_sprint_1.Data;
 using Microsoft.EntityFrameworkCore;
+using el_proyecte_grande_sprint_1.Repository;
 
 namespace el_proyecte_grande_sprint_1
 {
@@ -30,6 +31,7 @@ namespace el_proyecte_grande_sprint_1
             services.AddDbContext<ApplicationContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("ProjectLensDatabase")));
             services.AddSingleton<IPictureStorage, PictureStorage>();
+            services.AddSingleton<IAuthenticationRepository, AuthenticationRepository>();
             services.AddSpaStaticFiles(configuration =>
             {
                 configuration.RootPath = "project-lens/build";
