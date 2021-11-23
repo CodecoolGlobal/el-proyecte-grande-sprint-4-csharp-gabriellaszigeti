@@ -1,10 +1,14 @@
-using System;
+using System.ComponentModel.DataAnnotations;
 using System.Security.Cryptography;
 
 public class User {
-	private string _username;
-	private Rfc2898DeriveBytes _password;
-	private Guid _userId;
+
+	[Key]
+	private int Id { get; set; }
+
+	private string Email { get; set; }
+	private string Username { get; set; }
+	private Rfc2898DeriveBytes Password { get; set;}
 
 	public Rfc2898DeriveBytes HashPassword(string password) {
 		throw new System.NotImplementedException("Not implemented");
