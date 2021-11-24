@@ -1,16 +1,12 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.Extensions.Logging;
+﻿using Azure.Storage.Blobs;
 using el_proyecte_grande_sprint_1.Models.DTO;
+using el_proyecte_grande_sprint_1.Services;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
+using System.Collections.Generic;
 using System.IO;
-using System.Drawing;
-using System.Drawing.Imaging;
-using Azure.Storage.Blobs;
-using Azure.Storage.Blobs.Models;
+using System.Threading.Tasks;
 
 namespace el_proyecte_grande_sprint_1.Controllers
 {
@@ -20,68 +16,41 @@ namespace el_proyecte_grande_sprint_1.Controllers
     {
 
         private readonly ILogger<PicturesController> _logger;
-        private string _connectionString = "DefaultEndpointsProtocol=https;AccountName=projectlens;AccountKey=9ras80E5iOB1hxIXVm00ew+bY42Pp9BQEf4kcPwqQG59OPQ6FLcr1uPu0q/6DLJn5Djld2cHr4JSlx6WE8bYBQ==;EndpointSuffix=core.windows.net";
-        private string _blobContainerName = "projectlens-blob1";
-
-
+        private IConfiguration _configuration;
+        private IAzureBlobStorageService _azureBlobStorageService;
         private IPictureStorage _pictureStorage;
-        public PicturesController(ILogger<PicturesController> logger, IPictureStorage pictureStorage)
+        private string _contentContainer;
+
+
+        public PicturesController(ILogger<PicturesController> logger, IPictureStorage pictureStorage,
+            IConfiguration configuration, IAzureBlobStorageService azureBlobStorageService)
         {
             _logger = logger;
+            _configuration = configuration;
+            _azureBlobStorageService = azureBlobStorageService;
             _pictureStorage = pictureStorage;
+            _contentContainer = _configuration["ContentContainer"];
         }
 
 
         [HttpGet]
-        public ActionResult<IEnumerable<Picture>> GetAllPictures()
+        public async Task<ActionResult<IEnumerable<AzurePictureDTO>>>GetAllPicturesFromBlobContainer()
         {
-            var pictures = _pictureStorage.GetAllPictures();
-            if (pictures == null)
-                return NotFound();
-            else
-            {
-                return Ok(pictures);
-            }
+            var picturesFromAzureContainer = await
+                _azureBlobStorageService.GetAllPicturesFromBlobContainer(_contentContainer);
+
+            return Ok(picturesFromAzureContainer);
+
         }
 
-
         [HttpPost]
-        public async Task<ActionResult> CreateImage([FromForm] ImageDTO img)
+        public async Task<ActionResult> UploadImageToAzureStorage([FromForm] ImageUploadDTO partialImageData)
         {
-            using var memoryStream = new MemoryStream();
-            await img.Image.CopyToAsync(memoryStream);
+            Stream fileStream = await _pictureStorage.CopyImageFromDataToStream(partialImageData);
 
-            BlobServiceClient blobServiceClient = new BlobServiceClient(_connectionString);
-            BlobContainerClient containerClient = blobServiceClient.GetBlobContainerClient(_blobContainerName);
-            BlobClient blobClient = containerClient.GetBlobClient(img.Image.FileName);
-
-            memoryStream.Seek(0, SeekOrigin.Begin);
-
-            await blobClient.UploadAsync(memoryStream, true);
+            await _azureBlobStorageService.UploadImage(partialImageData, _contentContainer, fileStream);
 
             return Ok();
         }
-
-
-        [HttpGet]
-        [Route("get-all-pictures")]
-        public async Task<ActionResult<IEnumerable<AzurePictureDTO>>>GetAllPicturesFromBlobContainer()
-        {
-            var blobContainerClient = new BlobContainerClient(_connectionString, _blobContainerName);
-            List<AzurePictureDTO> azurePictures = new List<AzurePictureDTO>();
-
-            await foreach (var blobItem in blobContainerClient.GetBlobsAsync())
-            {
-                var blobClient = blobContainerClient.GetBlobClient(blobItem.Name);
-                var uri = blobClient.Uri;
-
-                AzurePictureDTO azurePicture = new AzurePictureDTO(uri.OriginalString, blobItem.Name, blobItem.Name);
-                azurePictures.Add(azurePicture);
-            }
-
-            return Ok(azurePictures);
-
-        }
-
     }
 }

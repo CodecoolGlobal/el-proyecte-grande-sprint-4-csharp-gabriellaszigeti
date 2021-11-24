@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
+using el_proyecte_grande_sprint_1.Services;
 using el_proyecte_grande_sprint_1.Data;
 using Microsoft.EntityFrameworkCore;
 using el_proyecte_grande_sprint_1.Repository;
@@ -36,6 +37,12 @@ namespace el_proyecte_grande_sprint_1
             //{
             //    configuration.RootPath = "project-lens/build";
             //});
+            services.AddSingleton<IAzureBlobStorageService, AzureBlobStorageService>();
+            services.AddSingleton<IAuthenticationRepository, AuthenticationRepository>();
+            services.AddSpaStaticFiles(configuration =>
+            {
+                configuration.RootPath = "project-lens/build";
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
