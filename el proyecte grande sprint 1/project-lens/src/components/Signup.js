@@ -1,4 +1,6 @@
 import * as React from 'react';
+import axios from "axios";
+import { useState } from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -29,15 +31,56 @@ function Copyright(props) {
 const theme = createTheme();
 
 export default function SignUp() {
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    // eslint-disable-next-line no-console
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
-  };
+
+    const [username, setuserName] = useState('');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    //const [state, setState] = useState({
+    //    name: "",
+    //    email: "",
+    //    password: ""
+    //})
+
+    const handleUsername = (e) => {
+        setuserName(e.target.value);
+    };
+
+    const handleEmail = (e) => {
+        setEmail(e.target.value);
+    };
+
+    const handlePassword = (e) => {
+        setPassword(e.target.value);
+    };
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        const user = { Email: email, Username: username, Password: password };
+        axios.post("/api/authentication", user)
+            .then(function (response) {
+                console.log(response);
+            })
+        if (username === '' || email === '' || password === '') {
+            console.log("please fill in all data");
+        } else {
+            console.log("registration success!");
+        }
+    };
+
+    const checkIfUserRegistered = (e) => {
+        e.preventDefault();
+        let partialUserData = { Email: email, Username: username }
+        axios.post("/api/authentication/user-validation", partialUserData)
+            .then(function (response) {
+                if (response.data === "False") {
+                    handleSubmit(e);
+                } else {
+                    alert("username or email already registered");
+                }
+
+            })
+    }
+
 
   return (
     <ThemeProvider theme={theme}>
@@ -48,7 +91,7 @@ export default function SignUp() {
                     justifyContent: 'center',
                     flexDirection: 'row',
                 }} >
-                    <Box sx={{ height: '60%', width: '80%', backgroundColor: 'white', opacity: '100%' }} style={{
+                  <Box sx={{ height: '48%', width: '40%', backgroundColor: 'white', opacity: '100%' }} style={{
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'center',
@@ -63,6 +106,7 @@ export default function SignUp() {
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
+            width: '60%'
           }}
         >
           <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
@@ -71,27 +115,19 @@ export default function SignUp() {
           <Typography component="h1" variant="h5">
             Sign up
           </Typography>
-          <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
+              <Box component="form" noValidate onSubmit={checkIfUserRegistered} sx={{ mt: 1 }}>
             <Grid container spacing={2}>
-              <Grid item xs={12} sm={6}>
+              <Grid item xs={12}>
                 <TextField
-                  autoComplete="given-name"
-                  name="firstName"
-                  required
-                  fullWidth
-                  id="firstName"
-                  label="First Name"
-                  autoFocus
-                />
-              </Grid>
-              <Grid item xs={12} sm={6}>
-                <TextField
-                  required
-                  fullWidth
-                  id="lastName"
-                  label="Last Name"
-                  name="lastName"
-                  autoComplete="family-name"
+                        required
+                        fullWidth
+                        id="username"
+                        label="Username"
+                        name="username"
+                        autoComplete="username"
+                        value={username}
+                        onChange={handleUsername}
+
                 />
               </Grid>
               <Grid item xs={12}>
@@ -101,7 +137,10 @@ export default function SignUp() {
                   id="email"
                   label="Email Address"
                   name="email"
-                  autoComplete="email"
+                autoComplete="email"
+                value={email}
+                onChange={handleEmail}
+
                 />
               </Grid>
               <Grid item xs={12}>
@@ -112,7 +151,9 @@ export default function SignUp() {
                   label="Password"
                   type="password"
                   id="password"
-                  autoComplete="new-password"
+                autoComplete="new-password"
+                value={password}
+                onChange={handlePassword}
                 />
               </Grid>
               <Grid item xs={12}>
