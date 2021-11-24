@@ -13,7 +13,7 @@ export default function DiscoverView() {
     const [pictures, setPictures] = useState([]);
 
     useEffect(() => {
-        fetch("/api/pictures/get-all-pictures")
+        fetch("/api/pictures")
             .then(response => response.json())
             .then((result) => {
                 console.log(result)

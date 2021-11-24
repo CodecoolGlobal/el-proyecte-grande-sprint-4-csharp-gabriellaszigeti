@@ -3,7 +3,7 @@
 
 namespace el_proyecte_grande_sprint_1.Models.DTO
 {
-    public class ImageDTO
+    public class ImageUploadDTO
 {
     public IFormFile Image { get; set; }
 }
