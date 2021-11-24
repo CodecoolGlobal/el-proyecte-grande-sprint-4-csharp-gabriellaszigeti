@@ -32,6 +32,11 @@ namespace el_proyecte_grande_sprint_1
             services.AddDbContext<ApplicationContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("ProjectLensDatabase")));
             services.AddSingleton<IPictureStorage, PictureStorage>();
+            services.AddScoped<IAuthenticationRepository, AuthenticationRepository>();
+            //services.AddSpaStaticFiles(configuration =>
+            //{
+            //    configuration.RootPath = "project-lens/build";
+            //});
             services.AddSingleton<IAzureBlobStorageService, AzureBlobStorageService>();
             services.AddSingleton<IAuthenticationRepository, AuthenticationRepository>();
             services.AddSpaStaticFiles(configuration =>
@@ -67,15 +72,15 @@ namespace el_proyecte_grande_sprint_1
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
 
-            app.UseSpa(spa =>
-            {
-                spa.Options.SourcePath = "project-lens";
+            //app.UseSpa(spa =>
+            //{
+            //    spa.Options.SourcePath = "project-lens";
 
-                if (env.IsDevelopment())
-                {
-                    spa.UseReactDevelopmentServer(npmScript: "start");
-                }
-            });
+            //    if (env.IsDevelopment())
+            //    {
+            //        spa.UseReactDevelopmentServer(npmScript: "start");
+            //    }
+            //});
         }
     }
 }
