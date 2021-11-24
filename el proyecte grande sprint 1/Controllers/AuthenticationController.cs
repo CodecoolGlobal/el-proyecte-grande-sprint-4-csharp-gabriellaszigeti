@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace el_proyecte_grande_sprint_1.Controllers
 {
-    [Route("api/authentication")]
+    [Route("/api/authentication")]
     [ApiController]
     public class AuthenticationController : ControllerBase
     {
