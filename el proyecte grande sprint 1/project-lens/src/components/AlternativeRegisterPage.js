@@ -12,6 +12,11 @@ export default function Register() {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    //const [state, setState] = useState({
+    //    name: "",
+    //    email: "",
+    //    password: ""
+    //})
 
     const handleUsername = (e) => {
         setName(e.target.value);
@@ -27,13 +32,19 @@ export default function Register() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        const user = { Email: email,  Username : name,  Password: password};
+        axios.post("/api/authentication", user)
+            .then(function (response) {
+                console.log(response);
+            })
+
+
         if (name === '' || email === '' || password === '') {
             console.log("please fill in all data");
         } else {
             console.log("registration success!");
         }
     };
-
 
 
     return (
@@ -45,7 +56,7 @@ export default function Register() {
             <div className="messages">
             </div>
 
-            <form>
+            <form >
                 <label className="label">Name</label>
                 <input onChange={handleUsername} className="input"
                     value={name} type="text" />
@@ -58,7 +69,7 @@ export default function Register() {
                 <input onChange={handlePassword} className="input"
                     value={password} type="password" />
 
-                <button onClick={handleSubmit} className="btn" type="submit">
+                <button className="btn" type="submit" onClick={handleSubmit}>
                     Submit
                 </button>
             </form>
