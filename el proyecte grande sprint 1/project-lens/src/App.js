@@ -11,6 +11,7 @@ import Signup from "./components/Signup";
 import DiscoverView from './components/DiscoverView';
 import UploadPage from './components/UploadPage';
 import FileUploadPage from './components/UploadImage';
+import Register from './components/AlternativeRegisterPage';
 
 function App() {
     return (
@@ -21,6 +22,8 @@ function App() {
                     <Route exact path="/signup" component={Signup} />
                     <Route path="/discover" component={DiscoverView} exact />
                     <Route path="/upload" component={UploadPage} exact />
+                    <Route path="/register" component={Register} exact />
+
             <Footer />
         </Container>
     );
