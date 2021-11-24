@@ -64,6 +64,7 @@ export default function SignUp() {
             console.log("please fill in all data");
         } else {
             console.log("registration success!");
+            alert("Successfully Registered!")
         }
     };
 
