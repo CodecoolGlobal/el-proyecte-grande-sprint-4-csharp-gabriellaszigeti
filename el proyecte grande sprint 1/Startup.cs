@@ -13,6 +13,7 @@ using el_proyecte_grande_sprint_1.Services;
 using el_proyecte_grande_sprint_1.Data;
 using Microsoft.EntityFrameworkCore;
 using el_proyecte_grande_sprint_1.Repository;
+using Microsoft.AspNetCore.Authentication;
 
 namespace el_proyecte_grande_sprint_1
 {
@@ -34,6 +35,8 @@ namespace el_proyecte_grande_sprint_1
             services.AddSingleton<IPictureStorage, PictureStorage>();
             services.AddScoped<IAuthenticationRepository, AuthenticationRepository>();
             services.AddSingleton<IAzureBlobStorageService, AzureBlobStorageService>();
+            services.AddAuthentication("BasicAuthentication")
+                .AddScheme<AuthenticationSchemeOptions, BasicAuthenticationHandler>("BasicAuthentication", null);
             services.AddSpaStaticFiles(configuration =>
             {
                 configuration.RootPath = "project-lens/build";
@@ -59,6 +62,7 @@ namespace el_proyecte_grande_sprint_1
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
