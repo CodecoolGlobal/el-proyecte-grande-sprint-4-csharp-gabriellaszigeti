@@ -1,20 +1,21 @@
-﻿import * as React from 'react';
-import Box from '@mui/material/Box';
-import ImageList from '@mui/material/ImageList';
-import ImageListItem from '@mui/material/ImageListItem';
-import { useState, useEffect } from 'react';
-import axios from "axios";
-
+﻿import axios from "axios";
+import * as React from 'react';
+import { useState } from 'react';
 
 
 export default function Register() {
 
-    const [name, setName] = useState('');
+    const [username, setuserName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    //const [state, setState] = useState({
+    //    name: "",
+    //    email: "",
+    //    password: ""
+    //})
 
     const handleUsername = (e) => {
-        setName(e.target.value);
+        setuserName(e.target.value);
     };
 
     const handleEmail = (e) => {
@@ -27,13 +28,31 @@ export default function Register() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        if (name === '' || email === '' || password === '') {
+        const user = { Email: email, Username: username, Password: password };
+        axios.post("/api/authentication", user)
+            .then(function (response) {
+                console.log(response);
+            })
+        if (username === '' || email === '' || password === '') {
             console.log("please fill in all data");
         } else {
             console.log("registration success!");
         }
     };
 
+    const checkIfUserRegistered = (e) => {
+        e.preventDefault();
+        let partialUserData = { Email: email, Username: username}
+        axios.post("/api/authentication/user-validation", partialUserData)
+            .then(function (response) {
+                if (response.data === "False") {
+                    handleSubmit(e);
+                } else {
+                    alert("username or email already registered");
+                }
+                
+        })
+    }
 
 
     return (
@@ -45,10 +64,10 @@ export default function Register() {
             <div className="messages">
             </div>
 
-            <form>
+            <form >
                 <label className="label">Name</label>
                 <input onChange={handleUsername} className="input"
-                    value={name} type="text" />
+                    value={username} type="text" />
 
                 <label className="label">Email</label>
                 <input onChange={handleEmail} className="input"
@@ -58,7 +77,7 @@ export default function Register() {
                 <input onChange={handlePassword} className="input"
                     value={password} type="password" />
 
-                <button onClick={handleSubmit} className="btn" type="submit">
+                <button className="btn" type="submit" onClick={checkIfUserRegistered}>
                     Submit
                 </button>
             </form>
