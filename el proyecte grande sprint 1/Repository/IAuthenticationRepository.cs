@@ -5,5 +5,6 @@ namespace el_proyecte_grande_sprint_1.Repository
     public interface IAuthenticationRepository
     {
         Task AddUser(User user);
+        Task<User> FindUserByUsername(string username);
     }
 }

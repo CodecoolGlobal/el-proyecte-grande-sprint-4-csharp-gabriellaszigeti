@@ -1,4 +1,5 @@
 ﻿using el_proyecte_grande_sprint_1.Data;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,6 +20,11 @@ namespace el_proyecte_grande_sprint_1.Repository
         {
             await _context.AddAsync(user);
             _context.SaveChanges();
+        }
+
+        public async Task<User> FindUserByUsername(string username)
+        {
+            return await _context.Users.FirstOrDefaultAsync(user => user.Username == username);
         }
     }
 }
